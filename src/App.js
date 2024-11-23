@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Content from "./Components/Content";
+import Header from "./Components/Header";
+import MainSection from "./Components/MainSection";
+import Sidebar from "./Components/Sidebar";
 
 function App() {
+  const [selectedCountry, setSelectedCountry] = useState("USA");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidebar
+        isCollapsed={isCollapsed}
+        setIsCollapsed={setIsCollapsed}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+        toggleDarkMode={toggleDarkMode}
+      />
+      <MainSection isCollapsed={isCollapsed}>
+        <Header
+          className="header"
+          isCollapsed={isCollapsed}
+          selectedCountry={selectedCountry}
+          setSelectedCountry={setSelectedCountry}
+          isDarkMode={isDarkMode}
+        />
+        <Content
+          className="content"
+          selectedCountry={selectedCountry}
+          isDarkMode={isDarkMode}
+        />
+      </MainSection>
     </div>
   );
 }

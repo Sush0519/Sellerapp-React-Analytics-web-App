@@ -1,38 +1,66 @@
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  font-family: "Roboto";
+}
+
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 16px;
+  height: 100vh;
+  transition: grid-template-columns 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sidebar {
+  position: fixed;
+  width: 170px;
+  transition: width 0.3s ease;
+  height: 100vh;
+  z-index: 100;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.main-section {
+  margin-left: 170px;
+  height: 100vh;
+  width: calc(100vw - 170px);
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  overflow: auto;
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-section.collapsed {
+  margin-left: 80px;
+  width: calc(100vw - 80px);
+}
+
+.header {
+  position: fixed;
+  width: calc(100vw - 170px);
+  height: 50px;
   display: flex;
-  flex-direction: column;
+  z-index: 100;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transition: width 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.header.collapsed {
+  width: calc(100vw - 80px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content {
+  padding-top: 50px;
+  height: 100vh;
+  overflow-y: auto;
 }
